@@ -7,6 +7,12 @@
     "express": "latest",
     "passport": "latest",
     "passport-local": "latest",
-    "mongoose": "latest"
+    "mongoose": "latest",
+    "grunt": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-csslint" : "latest",
+    "grunt-contrib-jshint": "latest"
   }
 }
