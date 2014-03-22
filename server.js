@@ -7,8 +7,9 @@ var express = require('express'),
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'app/views'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 app.use(express.favicon());
 app.use(express.logger('dev'));
