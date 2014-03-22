@@ -5,3 +5,9 @@
 .navbar a {
 	color: white !important;
 }
+
+.footer {
+	height: 165px;
+	margin-top: 550px;
+	background-color: #d14242;
+}
