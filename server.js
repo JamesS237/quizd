@@ -1,10 +1,8 @@
 'use strict';
 
-var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var http = require('http');
-var path = require('path');
+var express = require('express'),
+	http = require('http'),
+	path = require('path');
 
 var app = express();
 
@@ -21,9 +19,9 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 if (app.get('env') === 'development') {
-  app.use(express.errorHandler());
+	app.use(express.errorHandler());
 }
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+	console.log('Express server listening on port ' + app.get('port'));
 });
