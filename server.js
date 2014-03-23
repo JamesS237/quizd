@@ -21,6 +21,9 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 if (app.get('env') === 'development') {
 	app.use(express.errorHandler());
@@ -36,6 +39,8 @@ passport.use(new LocalStrategy({
     },
 
     function(email, password, done) {
+
+    	var User = mongoose.model('User');
 
         User.findOne({
             email: email
