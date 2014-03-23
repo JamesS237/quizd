@@ -31,6 +31,11 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 		templateUrl: 'views/signin.html',
 		controller: 'SigninController'
 
+	}).when('/signup', {
+
+		templateUrl: 'views/signup.html',
+		controller: 'SignupController'
+
 	}).otherwise({
 
 		redirectTo: '/'
