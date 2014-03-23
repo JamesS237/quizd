@@ -12,10 +12,7 @@ exports.authenticate = function(req, res) {
 		if (err) {
 			console.log(err);
 		}
-		
-		var secret = 'this is a temporary secret for testing purposes only';
-		var token = jwt.sign(user, secret, { expiresInMinutes: 60*5 });
-		res.json({ token: token });
+				res.json({ token: token });
     });
 };
 

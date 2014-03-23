@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose'),
     bcrypt = require('bcrypt'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    tokenSecret = 'testsecret';
 
 var UserSchema = new Schema({
     email: {
@@ -16,7 +17,9 @@ var UserSchema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+
+    token: String
 });
 
 
@@ -33,6 +36,13 @@ UserSchema.pre('save', function(next) {
         });
     });
 });
+
+UserSchema.statics.encode = function(data) {
+    return jwt.encode(data, tokenSecret);
+};
+UserSchema.statics.decode = function(data) {
+    return jwt.decode(data, tokenSecret);
+};
 
 UserSchema.methods.comparePassword = function(candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
