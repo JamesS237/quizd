@@ -66,6 +66,20 @@ UserSchema.statics.createUserToken = function(email, callback) {
     });
 };
 
+UserSchema.statics.findUser = function(email, token, callback) {
+    var self = this;
+    this.findOne({email: email}, function(err, user) {
+        if(err || !user) {
+            callback(err, null);
+        } else if (user.token) {
+            callback(false, user);
+        } else {
+            callback(new Error('Token does not exist or does not match.'), null);
+        }
+    });
+};
+
+
 UserSchema.methods.comparePassword = function(candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return callback(err);
