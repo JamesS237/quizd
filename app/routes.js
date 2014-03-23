@@ -11,3 +11,4 @@ module.exports = function(app, passport) {
 	app.get('/:anything', staticPages.home);
 	app.get('/', staticPages.home);
 };
+
