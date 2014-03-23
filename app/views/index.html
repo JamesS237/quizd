@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-	<header class="navbar navbar-fixed-top">
+	<nav class="navbar navbar-fixed-top">
 	    <ul class="navbar-nav nav">
 	        <li><a class="navbar-brand" href="/">Quizd</a></li>
 	        <li><a>About</a></li>
@@ -16,12 +16,16 @@
 	        <li><a>My Quizzes</a></li>
 	        <li><a>Sign In</a></li>
 	    </ul>
-	</header>
+	</nav>
 
-	<div ng-view></div>
-	<footer id="footer" class="footer">
-		
-	</footer>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+					<div ng-view></div>
+			</div>
+		</div>
+	</div>
+	<footer id="footer" class="footer"></footer>
     <!-- Angular JS -->
     <script type="text/javascript" src="/lib/angular/angular.js"></script>
     <script type="text/javascript" src="/lib/angular-cookies/angular-cookies.js"></script>
