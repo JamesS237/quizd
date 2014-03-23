@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
+    bcrypt = require('bcrypt'),
     Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
@@ -33,7 +34,6 @@ UserSchema.pre('save', function(next) {
         });
     });
 });
-
 
 UserSchema.methods.comparePassword = function(candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
