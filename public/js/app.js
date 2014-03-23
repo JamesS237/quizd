@@ -42,6 +42,18 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 	
 }]).controller('QuizListController', ['$scope', function($scope){
 	
-}]).controller('UserController', ['$scope', function($scope){
-	
+}]).controller('UserController', ['$scope', '$http', '$window', function($scope, $http, $window){
+	$scope.submit = function () {
+	    $http.post('/authenticate', $scope.user).success(function (data, status, headers, config) {
+	        $window.sessionStorage.token = data.token;
+	        $scope.message = 'Welcome';
+	      })
+	      .error(function (data, status, headers, config) {
+	        // Erase the token if the user fails to log in
+	        delete $window.sessionStorage.token;
+
+	        // Handle login errors here
+	        $scope.message = 'Error: Invalid user or password';
+	      });
+	 };
 }]);

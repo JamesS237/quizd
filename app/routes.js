@@ -10,7 +10,7 @@ module.exports = function(app, passport) {
 	
 	app.use('/api', expressJwt({secret: secret}));
 
-	app.post('/authentciate', passport.authenticate('local', {
+	app.post('/authenticate', passport.authenticate('local', {
         failureRedirect: '/signin',
         failureFlash: true
     }), users.authenticate);
