@@ -3,6 +3,7 @@
 var mongoose = require('mongoose'),
     bcrypt = require('bcrypt'),
     Schema = mongoose.Schema,
+    jwt = require('jwt-simple'),
     tokenSecret = 'testsecret';
 
 var UserSchema = new Schema({

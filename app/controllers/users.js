@@ -1,13 +1,12 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    User = mongoose.model('User'),
-   	jwt = require('express-jwt');
+    User = mongoose.model('User');
 
 
 exports.authenticate = function(req, res) {
    if (req.body.email) {
-        Account.createUserToken(req.body.email, function(err, usersToken) {
+        User.createUserToken(req.body.email, function(err, usersToken) {
             if (err) {
                 res.json({error: 'Issue generating token'});
             } else {
