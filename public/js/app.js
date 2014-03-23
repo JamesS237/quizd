@@ -26,6 +26,11 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 		templateUrl: 'views/quiz.html',
 		controller: 'QuizController'
 
+	}).when('/signin', {
+
+		templateUrl: 'views/signin.html',
+		controller: 'UserController'
+
 	}).otherwise({
 
 		redirectTo: '/'
@@ -36,5 +41,7 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 }]).controller('QuizController', ['$scope', function($scope){
 	
 }]).controller('QuizListController', ['$scope', function($scope){
+	
+}]).controller('UserController', ['$scope', function($scope){
 	
 }]);
