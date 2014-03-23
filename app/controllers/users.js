@@ -13,7 +13,7 @@ exports.create = function(req, res, next) {
 
     user.save(function(err) {
     	if(err) {
-    		console.log('err');   	
+    		console.log(err);   	
     	} else {
     		res.json(user);
     	}
