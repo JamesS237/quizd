@@ -6,23 +6,28 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 
 	$locationProvider.html5Mode(true);
 
-	$routeProvider.when('/about', {
-
-		templateUrl: 'views/about.html',
-		controller: 'StaticController'
-
-	}).when('/quizzes/:quizId', {
-
-		templateUrl: 'views/quiz.html',
-		controller: 'QuizController'
-
-	}).when('/', {
+	$routeProvider.when('/', {
 
 		templateUrl: 'views/home.html',
 		controller: 'StaticController'
 
+	}).when('/about', {
+
+		templateUrl: 'views/about.html',
+		controller: 'StaticController'
+
+	}).when('/quizzes', {
+
+		templateUrl: 'views/quizlist.html',
+		controller: 'QuizListController'
+
+	}).when('/quiz/:quizId', {
+
+		templateUrl: 'views/quiz.html',
+		controller: 'QuizController'
+
 	}).otherwise({
-		
+
 		redirectTo: '/'
 	});
 
