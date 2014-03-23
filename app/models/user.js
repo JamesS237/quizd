@@ -13,7 +13,7 @@ var UserSchema = new Schema({
         }
     },
 
-    password: { 
+    password: {
         type: String,
         required: true
     }
@@ -42,3 +42,4 @@ UserSchema.methods.comparePassword = function(candidatePassword, callback) {
     });
 };
 
+mongoose.model('User', UserSchema);
