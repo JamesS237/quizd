@@ -44,6 +44,27 @@ UserSchema.statics.decode = function(data) {
     return jwt.decode(data, tokenSecret);
 };
 
+UserSchema.statics.createUserToken = function(email, callback) {
+    var self = this;
+    this.findOne({email: email}, function(err, user) {
+        if(err || !user) {
+            console.log(err);
+        }
+
+        var token = self.encode({email: email});
+
+        user.token = token;
+
+        user.save(function(err, user) {
+            if (err) {
+                callback(err, null);
+            } else {
+                callback(false, user.token);
+            }
+        });
+    });
+};
+
 UserSchema.methods.comparePassword = function(candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return callback(err);
