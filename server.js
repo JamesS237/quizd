@@ -2,7 +2,8 @@
 
 var express = require('express'),
 	http = require('http'),
-	path = require('path');
+	path = require('path'),
+	mongoose = require('mongoose');
 
 var app = express();
 
@@ -23,6 +24,7 @@ if (app.get('env') === 'development') {
 	app.use(express.errorHandler());
 }
 
+mongoose.connect('mongodb://localhost/quizd');
 require('./app/routes')(app);
 
 http.createServer(app).listen(app.get('port'), function(){
