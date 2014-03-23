@@ -2,6 +2,7 @@
 
 var express = require('express'),
 	passport = require('passport'),
+	LocalStrategy = require('passport-local').Strategy,
 	http = require('http'),
 	path = require('path'),
 	mongoose = require('mongoose');
@@ -27,7 +28,7 @@ if (app.get('env') === 'development') {
 
 mongoose.connect('mongodb://localhost/quizd');
 require('./app/models/user');
-require('./app/routes')(app);
+require('./app/routes')(app, passport);
 
 passport.use(new LocalStrategy({
 		usernameField: 'email',
