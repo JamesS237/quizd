@@ -25,6 +25,7 @@ if (app.get('env') === 'development') {
 }
 
 mongoose.connect('mongodb://localhost/quizd');
+require('./app/models/user');
 require('./app/routes')(app);
 
 http.createServer(app).listen(app.get('port'), function(){
