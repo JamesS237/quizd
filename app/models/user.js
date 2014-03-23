@@ -21,15 +21,20 @@ var UserSchema = new Schema({
 
 
 UserSchema.pre('save', function(next) {
-    if (!this.isModified('password')) return next();
-
+    var user = this;
+    console.log('24');
+    if (!user.isModified('password')) return next();
+    console.log('26');
     bcrypt.genSalt(10, function(err, salt) {
         if (err) return next(err);
+            console.log('29');
 
-        bcrypt.hash(this.password, salt, function(err, hash) {
+        bcrypt.hash(user.password, salt, function(err, hash) {
+            console.log('32');
             if (err) return next(err);
+                console.log('33');
 
-            this.password = hash;
+            user.password = hash;
             next();
         });
     });
