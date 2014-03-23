@@ -9,7 +9,7 @@
     "passport-local": "latest",
     "mongoose": "latest",
     "base64url": "latest",
-    "express-jwt": "latest",
+    "jwt-simple": "latest",
     "bcrypt": "latest",
     "ejs": "latest",
     "grunt": "latest",

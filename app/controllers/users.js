@@ -1,11 +1,22 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+   	jwt = require('express-jwt');
+
 
 exports.authenticate = function(req, res) {
-	var token = jwt.sign(profile, secret, { expiresInMinutes: 60*5 });
-	res.json({ token: token });
+    User.findOne({
+        email: req.body.email
+    }, function(err, user) {
+		if (err) {
+			console.log(err);
+		}
+		
+		var secret = 'this is a temporary secret for testing purposes only';
+		var token = jwt.sign(user, secret, { expiresInMinutes: 60*5 });
+		res.json({ token: token });
+    });
 };
 
 exports.create = function(req, res, next) {

@@ -3,13 +3,7 @@
 module.exports = function(app, passport) {
 	var staticPages = require('./controllers/static');
 	var users = require('./controllers/users');
-
-
-	var expressJwt = require('express-jwt');
-	var secret = 'this is a temporary secret for testing purposes only';
 	
-	app.use('/api', expressJwt({secret: secret}));
-
 	app.post('/signup', users.create);
 
 	app.post('/authenticate', passport.authenticate('local', {
