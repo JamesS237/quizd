@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express'),
+	passport = require('passport'),
 	http = require('http'),
 	path = require('path'),
 	mongoose = require('mongoose');
@@ -24,49 +25,47 @@ if (app.get('env') === 'development') {
 	app.use(express.errorHandler());
 }
 
- passport.use(new LocalStrategy({
-            usernameField: 'email',
-            passwordField: 'password'
-        },
-
-        function(email, password, done) {
-
-            User.findOne({
-                email: email
-            }, function(err, user) {
-                if (err) {
-                    return done(err);
-                }
-
-                if (!user) {
-                    return done(null, false, {
-                        message: 'Unknown user'
-                    });
-                }
-
-                user.comparePassword(password, function (err, isMatch) {
-                	if(err) {
-                		return done(err);
-                	}
-
-	                if (isMatch) {
-	                	return done(null, user)
-	                } else {
-	                	return done(null, false, {
-	                		message: 'Invalid password'
-	                    });
-	                }
-
-                });
-            });
-        }
-    ));
-
 mongoose.connect('mongodb://localhost/quizd');
 require('./app/models/user');
 require('./app/routes')(app);
 
+passport.use(new LocalStrategy({
+		usernameField: 'email',
+		passwordField: 'password'
+    },
+
+    function(email, password, done) {
+
+        User.findOne({
+            email: email
+        }, function(err, user) {
+			if (err) {
+				return done(err);
+			}
+
+            if (!user) {
+                return done(null, false, {
+                    message: 'Unknown user'
+                });
+            }
+
+            user.comparePassword(password, function (err, isMatch) {
+				if(err) {
+					return done(err);
+				}
+
+                if (isMatch) {
+					return done(null, user);
+                } else {
+					return done(null, false, {
+						message: 'Invalid password'
+					});
+                }
+            });
+        });
+    }
+));
+
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
-
