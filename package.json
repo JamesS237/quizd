@@ -8,6 +8,7 @@
     "passport": "latest",
     "passport-local": "latest",
     "mongoose": "latest",
+    "express-jwt": "latest",
     "bcrypt": "latest",
     "ejs": "latest",
     "grunt": "latest",
