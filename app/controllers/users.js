@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
 
 exports.authenticate = function(req, res) {
-   if (req.body.email) {
+    if (req.body.email) {
         User.createUserToken(req.body.email, function(err, usersToken) {
             if (err) {
                 res.json({error: 'Issue generating token'});
@@ -18,14 +18,13 @@ exports.authenticate = function(req, res) {
     }
 };
 
-exports.create = function(req, res, next) {
+exports.create = function(req, res) {
     var user = new User(req.body);
-
     user.save(function(err) {
-    	if(err) {
-    		console.log(err);   	
-    	} else {
-    		res.json(user);
-    	}
+        if(err) {
+            console.log(err);
+        } else {
+            res.json(user);
+        }
     });
 };
