@@ -42,7 +42,7 @@ passport.use(new LocalStrategy({
 
     function(email, password, done) {
 
-    	var User = mongoose.model('User');
+        var User = mongoose.model('User');
 
         User.findOne({
             email: email
@@ -75,11 +75,11 @@ passport.use(new LocalStrategy({
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+    done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-  done(null, user);
+    done(null, user);
 });
 
 http.createServer(app).listen(app.get('port'), function(){
