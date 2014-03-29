@@ -41,36 +41,26 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 		redirectTo: '/'
 	});
 
-}]).controller('StaticController', ['$scope', function($scope){
+}]).controller('StaticController', ['$scope', function($scope) {
 	
-}]).controller('QuizController', ['$scope', function($scope){
+}]).controller('QuizController', ['$scope', function($scope) {
 	
-}]).controller('QuizListController', ['$scope', function($scope){
+}]).controller('QuizListController', ['$scope', function($scope) {
 	
-}]).controller('SigninController', ['$scope', '$http', '$window', function($scope, $http, $window){
+}]).controller('SigninController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 	$scope.submit = function () {
-	    $http.post('/authenticate', $scope.user).success(function (data, status, headers, config) {
-	        $window.sessionStorage.token = data.token;
-	        $scope.message = 'Welcome';
-	      })
-	      .error(function (data, status, headers, config) {
-	        // Erase the token if the user fails to log in
-	        delete $window.sessionStorage.token;
-
-	        // Handle login errors here
-	        $scope.message = 'Error: Invalid user or password';
-	      });
-	 };
-}]).controller('SignupController', ['$scope', '$http', '$window', function($scope, $http, $window){
+		$http.post('/authenticate', $scope.user).success(function (data) {
+			$window.sessionStorage.token = data.token;
+		}).error(function () {
+			delete $window.sessionStorage.token;
+		});
+	};
+}]).controller('SignupController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 	$scope.submit = function () {
-	    $http.post('/signup', $scope.user).success(function (data, status, headers, config) {
-	        $scope.message = 'Welcome';
-	      })
-	      .error(function (data, status, headers, config) {
-	        // Erase the token if the user fails to log in
-
-	        // Handle login errors here
-	        $scope.message = 'Error: Invalid user or password';
-	      });
-	 };
+		$http.post('/signup', $scope.user).success(function (data) {
+			$window.sessionStorage.token = data.token;
+		}).error(function () {
+			delete $window.sessionStorage.token;
+		});
+	};
 }]);
