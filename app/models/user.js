@@ -67,7 +67,6 @@ UserSchema.statics.createUserToken = function(email, callback) {
 };
 
 UserSchema.statics.findUser = function(email, token, callback) {
-    var self = this;
     this.findOne({email: email}, function(err, user) {
         if(err || !user) {
             callback(err, null);
