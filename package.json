@@ -20,5 +20,10 @@
     "grunt-contrib-jshint": "latest",
     "grunt-nodemon": "latest",
     "grunt-concurrent": "latest"
+    "static-favicon", "latest",
+    "cookie-parser", "latest",
+    "body-parser", "latest",
+    "morgan", "latest",
+    "express-session", "latest",
   }
 }
