@@ -8,6 +8,10 @@ var express = require('express'),
 	favicon = require('static-favicon'),
 	bodyParser = require('body-parser'),
 	logger = require('morgan'),
+	methodOverride = require('method-override'),
+	cookieParser = require('cookie-parser'),
+  session = require('express-session'),
+  errorHandler = require('errorhandler'),
 	mongoose = require('mongoose');
 
 var app = express();
@@ -28,7 +32,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 if (app.get('env') === 'development') {
-	app.use(express.errorHandler());
+	app.use(errorHandler());
 }
 
 mongoose.connect('mongodb://localhost/quizd');
