@@ -7,6 +7,7 @@ var express = require('express'),
 	path = require('path'),
 	favicon = require('static-favicon'),
 	bodyParser = require('body-parser'),
+	logger = require('morgan'),
 	mongoose = require('mongoose');
 
 var app = express();
@@ -17,16 +18,13 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(express.cookieParser());
+app.use(logger('dev'));
+app.use(methodOverride());
+app.use(cookieParser());
 app.use(bodyParser());
-app.use(express.session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 if (app.get('env') === 'development') {
