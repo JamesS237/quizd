@@ -5,6 +5,8 @@ var express = require('express'),
 	LocalStrategy = require('passport-local').Strategy,
 	http = require('http'),
 	path = require('path'),
+	favicon = require('static-favicon'),
+	bodyParser = require('body-parser'),
 	mongoose = require('mongoose');
 
 var app = express();
@@ -14,13 +16,13 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-app.use(express.favicon());
+app.use(favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
-app.use(express.bodyParser());
+app.use(bodyParser());
 app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
