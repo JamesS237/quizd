@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
     jwt = require('jwt-simple'),
     tokenSecret = 'testsecret';
 
-var QuizSchema = new Schema({
+var QuestionSchema = new Schema({
   title: {
       type: String,
       required: true,

@@ -60,7 +60,7 @@ UserSchema.statics.createUserToken = function(email, callback) {
             if (err) {
                 callback(err, null);
             } else {
-                callback(false, user.token);
+              callback(false, user.token);
             }
         });
     });

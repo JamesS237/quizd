@@ -28,6 +28,7 @@
     "method-override": "latest",
     "errorhandler" : "latest",
     "node-redis" : "latest",
-    "reds" : "latest"
+    "reds" : "latest",
+    "socket.io" : "latest"
   }
 }
