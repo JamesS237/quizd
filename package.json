@@ -25,6 +25,9 @@
     "body-parser": "latest",
     "morgan": "latest",
     "express-session": "latest",
-    "method-override": "latest"
+    "method-override": "latest",
+    "errorhandler" : "latest",
+    "node-redis" : "latest",
+    "reds" : "latest"
   }
 }
