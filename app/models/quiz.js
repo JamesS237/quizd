@@ -15,10 +15,15 @@ var QuizSchema = new Schema({
         }
     },
 
-    password: {
-        type: String,
+    createdAt: {
+        type: Date,
         required: true
     },
+
+  updatedAt: {
+      type: Date,
+      required: true
+  },
 
     token: String
 });
