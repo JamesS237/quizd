@@ -15,6 +15,11 @@ var QuestionSchema = new Schema({
       }
   },
 
+  answers: {
+    type: Array,
+    required: true
+  },
+  
   createdAt: {
       type: Date,
       required: true
