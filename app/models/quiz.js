@@ -27,7 +27,7 @@ var QuizSchema = new Schema({
     },
 
     questions: {
-        type: Array,
+        type: [{ type: Schema.ObjectId, ref: 'Question' }],
         required: true
     }
 });
