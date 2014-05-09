@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
     tokenSecret = 'testsecret';
 
 var QuizSchema = new Schema({
+
     title: {
         type: String,
         required: true,
@@ -20,12 +21,15 @@ var QuizSchema = new Schema({
         required: true
     },
 
-  updatedAt: {
-      type: Date,
-      required: true
-  },
+    updatedAt: {
+        type: Date,
+        required: true
+    },
 
-    token: String
+    questions: {
+        type: Array,
+        required: true
+    }
 });
 
 

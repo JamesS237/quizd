@@ -30,7 +30,6 @@ var QuestionSchema = new Schema({
       required: true
   },
 
-  token: String
 });
 
 
