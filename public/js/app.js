@@ -51,7 +51,7 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 	$scope.submit = function () {
 		$http.post('/authenticate', $scope.user).success(function (data) {
 			$window.sessionStorage.token = data.token;
-			$rootScope.username = data.token;
+			$rootScope.username = 'Hi, ' + data.email.split('@')[0];
 		}).error(function () {
 			delete $window.sessionStorage.token;
 		});
@@ -60,7 +60,7 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 	$scope.submit = function () {
 		$http.post('/signup', $scope.user).success(function (data) {
 			$window.sessionStorage.token = data.token;
-			$rootScope.username = data.token;
+			$rootScope.username = 'Hi, ' + data.email.split('@')[0];
 			}).error(function () {
 			delete $window.sessionStorage.token;
 		});
