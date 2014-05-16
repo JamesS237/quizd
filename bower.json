@@ -10,8 +10,8 @@
         "angular-bootstrap": "latest",
         "angular-ui-router": "latest",
         "selectize": "latest",
-        "icheck": "latest",
-        "onepagescroll": "latest",
-        "spinkit": "latest"
+        "iCheck": "latest",
+        "onepage-scroll": "latest",
+        "SpinKit": "latest"
     }
 }

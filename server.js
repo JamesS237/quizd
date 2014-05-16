@@ -21,12 +21,23 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
+var RedisStore = require('connect-redis')(session)
+
+if (process.env.REDISTOGO_URL) {
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+		var redis = require("redis").createClient(rtg.port, rtg.hostname);
+
+		redis.auth(rtg.auth.split(":")[1]);
+} else {
+    var redis = require("redis").createClient();
+}
+
 app.use(favicon());
 app.use(logger('dev'));
 app.use(methodOverride());
 app.use(cookieParser());
 app.use(bodyParser());
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({ store: new RedisStore({client: redis}), secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));

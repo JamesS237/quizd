@@ -16,7 +16,7 @@
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
-    "grunt-contrib-csslint" : "latest",
+    "grunt-contrib-csslint": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-nodemon": "latest",
     "grunt-concurrent": "latest",
@@ -26,9 +26,11 @@
     "morgan": "latest",
     "express-session": "latest",
     "method-override": "latest",
-    "errorhandler" : "latest",
-    "node-redis" : "latest",
-    "reds" : "latest",
-    "socket.io" : "latest"
+    "errorhandler": "latest",
+    "redis": "latest",
+    "reds": "latest",
+    "socket.io": "latest",
+    "connect-redis": "~2.0.0",
+    "mongoose-troop": "0.0.8"
   }
 }

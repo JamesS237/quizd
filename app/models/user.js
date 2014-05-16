@@ -4,7 +4,22 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcrypt'),
     Schema = mongoose.Schema,
     jwt = require('jwt-simple'),
-    tokenSecret = 'testsecret';
+    tokenSecret = 'c3VnaHBhdXJvaGdhW29zcmdpaGFbb3JnaWhhd3JbZ2F3W2lyb2doW3dyaUdI',
+    troop = require('mongoose-troop');
+
+if (process.env.REDISTOGO_URL) {
+    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+    var redis = require("redis").createClient(rtg.port, rtg.hostname);
+
+    redis.auth(rtg.auth.split(":")[1]);
+} else {
+    var redis = require("redis").createClient();
+}
+
+var redisSeperator = function(arr, splitter) {
+  if(!splitter) splitter = ':';
+  return arr.join(splitter);
+};
 
 var UserSchema = new Schema({
     email: {
@@ -22,6 +37,7 @@ var UserSchema = new Schema({
 
     token: String
 });
+UserSchema.plugin(troop.timestamp, {createdPath:'createdAt', modifiedPath: 'updatedAt'})
 
 
 UserSchema.pre('save', function(next) {
@@ -36,13 +52,6 @@ UserSchema.pre('save', function(next) {
             next();
         });
     });
-}, function(next) {
-  this.updatedAt = new Date();
-});
-
-UserSchema.pre('create', function(next) {
-  this.updatedAt = new Date();
-  this.createdAt = new Date();
 });
 
 UserSchema.statics.encode = function(data) {
@@ -68,7 +77,13 @@ UserSchema.statics.createUserToken = function(email, callback) {
             if (err) {
                 callback(err, null);
             } else {
-              callback(false, user);
+              redis.set(redisSeperator(['user', 'token', user.email], ':'), [user.token], function(err, res) { //set user\xfftoken\xff[email] to the users token
+                if(err) {
+                  callback(err, null);
+                } else {
+                  callback(false, user);
+                }
+              })
             }
         });
     });
