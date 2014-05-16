@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcrypt'),
     Schema = mongoose.Schema,
     jwt = require('jwt-simple'),
-    tokenSecret = 'testsecret';
+    tokenSecret = 'c3VnaHBhdXJvaGdhW29zcmdpaGFbb3JnaWhhd3JbZ2F3W2lyb2doW3dyaUdI';
 
 var QuestionSchema = new Schema({
   title: {
@@ -19,7 +19,7 @@ var QuestionSchema = new Schema({
     type: Array,
     required: true
   },
-  
+
   createdAt: {
       type: Date,
       required: true
@@ -31,5 +31,3 @@ var QuestionSchema = new Schema({
   },
 
 });
-
-

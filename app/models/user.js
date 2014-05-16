@@ -36,11 +36,19 @@ UserSchema.pre('save', function(next) {
             next();
         });
     });
+}, function(next) {
+  this.updatedAt = new Date();
+});
+
+UserSchema.pre('create', function(next) {
+  this.updatedAt = new Date();
+  this.createdAt = new Date();
 });
 
 UserSchema.statics.encode = function(data) {
     return jwt.encode(data, tokenSecret);
 };
+
 UserSchema.statics.decode = function(data) {
     return jwt.decode(data, tokenSecret);
 };
