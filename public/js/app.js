@@ -47,19 +47,21 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 
 }]).controller('QuizListController', ['$scope', function($scope) {
 
-}]).controller('SigninController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+}]).controller('SigninController', ['$scope', '$http', '$window', '$rootScope', function($scope, $http, $window, $rootScope) {
 	$scope.submit = function () {
 		$http.post('/authenticate', $scope.user).success(function (data) {
 			$window.sessionStorage.token = data.token;
+			$rootScope.username = 'Hi, ' + data.email.split('@')[0];
 		}).error(function () {
 			delete $window.sessionStorage.token;
 		});
 	};
-}]).controller('SignupController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+}]).controller('SignupController', ['$scope', '$http', '$window', '$rootScope', function($scope, $http, $window, $rootScope) {
 	$scope.submit = function () {
 		$http.post('/signup', $scope.user).success(function (data) {
 			$window.sessionStorage.token = data.token;
-		}).error(function () {
+			$rootScope.username = 'Hi, ' + data.email.split('@')[0];
+			}).error(function () {
 			delete $window.sessionStorage.token;
 		});
 	};
