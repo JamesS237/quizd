@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-	User = mongoose.model('User');
+		User = mongoose.model('User');
 
 exports.requiresLogin = function(req, res, next) {
     var incomingToken = req.headers.token,

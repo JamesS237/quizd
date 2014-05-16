@@ -42,11 +42,11 @@ quizd.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 	});
 
 }]).controller('StaticController', ['$scope', function($scope) {
-	
+
 }]).controller('QuizController', ['$scope', function($scope) {
-	
+
 }]).controller('QuizListController', ['$scope', function($scope) {
-	
+
 }]).controller('SigninController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 	$scope.submit = function () {
 		$http.post('/authenticate', $scope.user).success(function (data) {

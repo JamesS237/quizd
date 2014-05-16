@@ -1,6 +1,6 @@
 {
   "name": "Quizd",
-  "description": "A simple review quiz creation app.",
+  "description": "A simple review quiz creation app",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
